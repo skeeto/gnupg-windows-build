@@ -2,7 +2,7 @@ FROM debian:buster-slim
 
 ARG GNUPG_VERSION=2.2.23
 ARG ICONV_VERSION=1.16
-ARG LIBASSUAN_VERSION=2.5.3
+ARG LIBASSUAN_VERSION=2.5.4
 ARG LIBGCRYPT_VERSION=1.8.7
 ARG LIBGPGERROR_VERSION=1.39
 ARG LIBKSBA_VERSION=1.4.0
@@ -124,7 +124,8 @@ RUN /gnupg-$GNUPG_VERSION/configure \
         --disable-wks-tools \
         --disable-zip \
         CFLAGS="-Os -fcommon" \
-        LDFLAGS="-static -s"
+        LDFLAGS="-static -s" \
+        LIBS="-lws2_32"
 RUN make -j$(nproc)
 RUN make install
 
