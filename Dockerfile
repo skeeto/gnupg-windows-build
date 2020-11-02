@@ -24,7 +24,7 @@ RUN curl --insecure --location --remote-name-all \
     https://gnupg.org/ftp/gcrypt/libksba/libksba-$LIBKSBA_VERSION.tar.bz2 \
     https://gnupg.org/ftp/gcrypt/npth/npth-$NPTH_VERSION.tar.bz2 \
     https://gnupg.org/ftp/gcrypt/pinentry/pinentry-$PINENTRY_VERSION.tar.bz2 \
-    https://ftpmirror.gnu.org/gnu/libiconv/libiconv-$ICONV_VERSION.tar.gz
+    https://ftp.gnu.org/gnu/libiconv/libiconv-$ICONV_VERSION.tar.gz
 COPY SHA256SUMS .
 RUN sha256sum -c SHA256SUMS && \
     tar xjf gnupg-$GNUPG_VERSION.tar.bz2 && \
