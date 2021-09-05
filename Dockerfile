@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM debian:bullseye-slim
 
 ARG GNUPG_VERSION=2.3.1
 ARG ICONV_VERSION=1.16
