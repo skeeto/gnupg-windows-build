@@ -42,9 +42,9 @@ RUN /npth-$NPTH_VERSION/configure \
         --prefix="/deps" \
         --enable-shared=no \
         --enable-static=yes \
-        CFLAGS="-Os"
-RUN make -j$(nproc)
-RUN make install
+        CFLAGS="-Os" \
+ && make -j$(nproc) \
+ && make install
 
 WORKDIR /libgpg-error
 RUN /libgpg-error-$LIBGPGERROR_VERSION/configure \
@@ -55,9 +55,9 @@ RUN /libgpg-error-$LIBGPGERROR_VERSION/configure \
         --disable-nls \
         --disable-doc \
         --disable-languages \
-        CFLAGS="-Os"
-RUN make -j$(nproc)
-RUN make install
+        CFLAGS="-Os" \
+ && make -j$(nproc) \
+ && make install
 
 WORKDIR /libassuan
 RUN /libassuan-$LIBASSUAN_VERSION/configure \
@@ -66,9 +66,9 @@ RUN /libassuan-$LIBASSUAN_VERSION/configure \
         --enable-shared=no \
         --enable-static=yes \
         --with-libgpg-error-prefix="/deps" \
-        CFLAGS="-Os"
-RUN make -j$(nproc)
-RUN make install
+        CFLAGS="-Os" \
+ && make -j$(nproc) \
+ && make install
 
 WORKDIR /libgcrypt
 RUN /libgcrypt-$LIBGCRYPT_VERSION/configure \
@@ -78,9 +78,9 @@ RUN /libgcrypt-$LIBGCRYPT_VERSION/configure \
         --enable-static=yes \
         --disable-doc \
         --with-libgpg-error-prefix="/deps" \
-        CFLAGS="-Os"
-RUN make -j$(nproc)
-RUN make install
+        CFLAGS="-Os" \
+ && make -j$(nproc) \
+ && make install
 
 WORKDIR /libksba
 RUN /libksba-$LIBKSBA_VERSION/configure \
@@ -88,9 +88,9 @@ RUN /libksba-$LIBKSBA_VERSION/configure \
         --prefix="/deps" \
         --enable-shared=no \
         --enable-static=yes \
-        --with-libgpg-error-prefix="/deps"
-RUN make -j$(nproc)
-RUN make install
+        --with-libgpg-error-prefix="/deps" \
+ && make -j$(nproc) \
+ && make install
 
 WORKDIR /gnupg
 RUN /gnupg-$GNUPG_VERSION/configure \
@@ -125,9 +125,9 @@ RUN /gnupg-$GNUPG_VERSION/configure \
         --disable-zip \
         CFLAGS="-Os -fcommon" \
         LDFLAGS="-static -s" \
-        LIBS="-lws2_32"
-RUN make -j$(nproc)
-RUN make install
+        LIBS="-lws2_32" \
+ && make -j$(nproc) \
+ && make install
 
 WORKDIR /iconv
 RUN /libiconv-$ICONV_VERSION/configure \
@@ -137,9 +137,9 @@ RUN /libiconv-$ICONV_VERSION/configure \
         --enable-static=yes \
         --disable-nls \
         --disable-dependency-tracking \
-        CFLAGS="-Os"
-RUN make -j$(nproc)
-RUN make install
+        CFLAGS="-Os" \
+ && make -j$(nproc) \
+ && make install
 
 WORKDIR /pinentry
 RUN /pinentry-$PINENTRY_VERSION/configure \
@@ -160,9 +160,9 @@ RUN /pinentry-$PINENTRY_VERSION/configure \
         --disable-pinentry-tqt \
         --disable-pinentry-fltk \
         LDFLAGS="-static -s" \
-        LIBS="-lws2_32"
-RUN make -j$(nproc)
-RUN cp w32/pinentry-w32.exe $PREFIX/bin/pinentry.exe
+        LIBS="-lws2_32" \
+ && make -j$(nproc) \
+ && cp w32/pinentry-w32.exe $PREFIX/bin/pinentry.exe
 
 WORKDIR /
 ENV PREFIX=${PREFIX}
