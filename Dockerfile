@@ -1,11 +1,11 @@
 FROM debian:bullseye-slim
 
-ARG GNUPG_VERSION=2.3.8
+ARG GNUPG_VERSION=2.4.0
 ARG ICONV_VERSION=1.16
 ARG LIBASSUAN_VERSION=2.5.5
 ARG LIBGCRYPT_VERSION=1.10.1
-ARG LIBGPGERROR_VERSION=1.45
-ARG LIBKSBA_VERSION=1.6.2
+ARG LIBGPGERROR_VERSION=1.46
+ARG LIBKSBA_VERSION=1.6.3
 ARG NPTH_VERSION=1.6
 ARG PINENTRY_VERSION=1.2.1
 
@@ -57,7 +57,8 @@ RUN /libgpg-error-$LIBGPGERROR_VERSION/configure \
         --disable-languages \
         CFLAGS="-Os" \
  && make -j$(nproc) \
- && make install
+ && make install \
+ && cp src/gpg-error-config /deps/bin/
 
 WORKDIR /libassuan
 RUN /libassuan-$LIBASSUAN_VERSION/configure \
