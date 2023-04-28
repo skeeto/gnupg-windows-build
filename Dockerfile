@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
 
 ARG GNUPG_VERSION=2.4.1
 ARG ICONV_VERSION=1.16
